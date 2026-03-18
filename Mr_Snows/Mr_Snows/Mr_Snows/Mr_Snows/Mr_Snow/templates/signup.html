@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup | Mr Snow Ice Cream</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("{% static 'images/login-bg.jpg' %}");
+background-size:cover;
+background-position:center;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.signup-box{
+background:white;
+padding:40px;
+width:380px;
+border-radius:10px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.signup-box h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff6600;
+border:none;
+color:white;
+font-size:16px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#e65c00;
+}
+
+.error{
+color:red;
+font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="signup-box">
+
+<h2>Create Account</h2>
+
+<form method="POST">
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ request.GET.next }}">
+
+<input type="text" name="first_name" placeholder="First Name" required>
+<br><br>
+
+<input type="text" name="last_name" placeholder="Last Name" required>
+<br><br>
+
+<input type="text" name="phone" placeholder="Phone Number" required>
+<br><br>
+
+<input type="text" name="username" placeholder="Username" required>
+<br><br>
+
+<input type="password" name="password1" placeholder="Password" required>
+<br><br>
+
+<input type="password" name="password2" placeholder="Confirm Password" required>
+<br><br>
+
+<button type="submit">Sign Up</button>
+
+</form>
+
+
+<p style="text-align:center;margin-top:15px;">
+Already have account? <a href="/login/">Login</a>
+</p>
+
+</div>
+
+</body>
+</html>

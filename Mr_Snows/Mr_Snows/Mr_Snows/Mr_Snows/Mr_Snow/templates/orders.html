@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Orders | Mr Snow</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f3f4f6;
+    margin:0;
+}
+
+.header{
+    background:#ff6b6b;
+    color:white;
+    padding:18px;
+    text-align:center;
+    font-size:28px;
+}
+
+.container{
+    width:85%;
+    margin:auto;
+    margin-top:30px;
+}
+
+.order-card{
+    display:flex;
+    background:white;
+    padding:18px;
+    margin-bottom:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    align-items:center;
+}
+
+.order-img{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.order-info{
+    margin-left:20px;
+    flex:1;
+}
+
+.product-name{
+    font-size:22px;
+    font-weight:bold;
+    color:#333;
+}
+
+.order-meta{
+    margin-top:8px;
+    color:#555;
+}
+
+.status{
+    margin-top:10px;
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.pending{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.delivered{
+    background:#d4edda;
+    color:#155724;
+}
+
+.address{
+    margin-top:8px;
+    font-size:14px;
+    color:#444;
+}
+
+.date{
+    margin-top:6px;
+    font-size:13px;
+    color:gray;
+}
+
+.history-title{
+    margin-top:40px;
+    font-size:22px;
+    color:#333;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+📦 My Orders
+</div>
+
+<div class="container">
+
+{% for order in orders %}
+
+<div class="order-card">
+
+<img src="{{ order.product.image.url }}" class="order-img">
+
+<div class="order-info">
+
+<div class="product-name">
+{{ order.product.name }}
+</div>
+
+<div class="order-meta">
+Price: ₹{{ order.price }}
+</div>
+
+<div class="order-meta">
+Quantity: {{ order.quantity }}
+</div>
+
+<div class="date">
+Ordered on: {{ order.ordered_date }}
+</div>
+
+<div class="address">
+Delivery Address: {{ order.address }}
+</div>
+{% if forloop.first %}
+<span class="status pending">⏳ Pending Delivery</span>
+{% else %}
+<span class="status delivered">✅ Delivered</span>
+{% endif %}
+
+</div>
+
+</div>
+
+{% empty %}
+
+<h3 style="text-align:center;">No Orders Yet</h3>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<div class="hero-content">
+<h1>Happiness<br>in Every Scoop</h1>
+
+<p>Fresh • Creamy • Handcrafted</p>
+
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+Explore Products
+</button>
+
+</div>
+
+<div class="hero-images">
+<img src="{% static 'images/hero-icecream.png' %}" class="ice img4">
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+<div class="about-container">
+
+<div class="about-image">
+<img src="{% static 'images/about-icecream.png' %}">
+</div>
+
+<div class="about-content">
+
+<span class="about-tag">About Us</span>
+
+<h2>Where pure meets playful</h2>
+
+            <p>
+               Where pure
+meets playful
+
+Mr snow Ice Creams came to life over 
+late-night cravings and endless laughter because, let’s face it,
+ the best memories are made with a spoon in hand. We wanted ice cream that’s as honest as your best friend,
+  no artificial flavors, no preservatives, just pure goodness. So, we got to work, turning the creamiest milk 
+  and freshest fruits into flavours inspired by all the things we love.
+Every scoop we churn is a little love note to friendship. It’s for those who believe that the best things in 
+life are meant to be shared, and that a tub of ice cream is the perfect excuse to do it.
+
+
+            </p>
+
+           <ul class="about-features">
+
+<li>✔ Organic Ingredients</li>
+<li>✔ Freshly Made Daily</li>
+<li>✔ Professional Staff</li>
+<li>✔ Hygienic & Safe</li>
+
+</ul>
+
+<button class="about-btn">Learn More</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="slider" id="products">
+
+<h2>🍦 Our Bestsellers</h2>
+
+<div class="slider-track">
+
+<div class="slide">
+<img src="{% static 'images/vanilla.png' %}">
+<span>Vanilla</span>
+</div>
+
+<div class="slide">
+<img src="{% static 'images/chocolate.png' %}">
+<span>Chocolate</span>
+</div>
+
+<div class="slide">
+<img src="{% static 'images/strawberry.png' %}">
+<span>Strawberry</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+<section class="reviews">
+
+<h2>⭐ What our customers think about us</h2>
+
+<div class="reviews-row">
+
+{% for r in reviews %}
+
+<div class="review-card">
+
+<div class="stars">{{ r.rating }}</div>
+
+<p class="review-text">{{ r.comment }}</p>
+
+<h4 class="review-name">{{ r.name }}</h4>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+
+<!-- VISIT -->
+<section class="visit">
+
+<h2>📍 Drop By for a Bite.</h2>
+
+<div class="visit-row">
+
+<div class="visit-item">
+
+<h3>📍 Address</h3>
+
+<p>
+Mr. Snow Ice Cream<br>
+Main Market Road, Baramati<br>
+Maharashtra, India
+</p>
+
+</div>
+
+<div class="visit-divider"></div>
+
+<div class="visit-item">
+
+<h3>⏰ Opening Hours</h3>
+
+<p>
+Mon – Fri: 11am – 10pm<br>
+Saturday: 11am – 11pm<br>
+Sunday: 12pm – 9pm
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+<section class="stats-section">
+
+<h2>🌍 Mr Snow in every city</h2>
+
+<div class="stats-container">
+
+<div class="stat-box">
+
+<div class="icon-circle">
+<img src="{% static 'images/shop.png' %}">
+</div>
+
+<h1>35+</h1>
+<p>Parlours</p>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="icon-circle">
+<img src="{% static 'images/icecream.png' %}">
+</div>
+
+<h1>50+</h1>
+<p>Flavors</p>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="icon-circle">
+<img src="{% static 'images/plane.png' %}">
+</div>
+
+<h1>150+</h1>
+<p>Cities</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+window.addEventListener("scroll", () => {
+
+const navbar = document.querySelector(".navbar");
+
+navbar.classList.toggle("scrolled", window.scrollY > 20);
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mr Snow Admin Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f5f5f5;
+}
+
+.sidebar{
+width:220px;
+height:100vh;
+background:#222;
+color:white;
+position:fixed;
+padding:20px;
+}
+
+.sidebar h2{
+color:#ff4d4d;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:10px;
+text-decoration:none;
+margin:5px 0;
+}
+
+.sidebar a:hover{
+background:#444;
+}
+
+.main{
+margin-left:240px;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+text-align:center;
+}
+
+table th,table td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+.product-img{
+width:60px;
+height:60px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.delete{
+background:red;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Mr Snow</h2>
+
+<a href="/dashboard/">Dashboard</a>
+<a href="/add-product/">Add Product</a>
+<a href="/orders/">Orders</a>
+<a href="/logout/">Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Products</h1>
+
+<div class="card">
+
+<table>
+
+<tr>
+<th>Image</th>
+<th>Name</th>
+<th>Type</th>
+<th>Price</th>
+<th>Delete</th>
+</tr>
+
+{% for p in products %}
+
+<tr>
+
+<td>
+{% if p.image %}
+<img src="{{ p.image.url }}" class="product-img">
+{% else %}
+No Image
+{% endif %}
+</td>
+
+<td>{{ p.name }}</td>
+<td>{{ p.type }}</td>
+<td>₹{{ p.price }}</td>
+
+<td>
+
+<form action="{% url 'delete_product' p.id %}" method="POST">
+{% csrf_token %}
+<button class="delete">Delete</button>
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

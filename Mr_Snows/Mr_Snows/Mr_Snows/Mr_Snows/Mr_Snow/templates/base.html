@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Mr. Snow Ice Cream</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo{
+width:40px;
+}
+
+.brand-name{
+font-size:22px;
+font-weight:bold;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+.nav-actions{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.search-box{
+padding:6px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.nav-icon{
+text-decoration:none;
+color:#333;
+}
+
+/* ACCOUNT DROPDOWN */
+
+.account-dropdown{
+position:relative;
+display:inline-block;
+}
+
+.account-btn{
+background:none;
+border:none;
+font-size:16px;
+cursor:pointer;
+}
+
+.dropdown-menu{
+display:none;
+position:absolute;
+right:0;
+top:100%;
+background:white;
+min-width:160px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+border-radius:6px;
+padding:8px 0;
+z-index:100;
+}
+
+.dropdown-menu a{
+display:block;
+padding:10px 15px;
+text-decoration:none;
+color:#333;
+}
+
+.dropdown-menu a:hover{
+background:#f5f5f5;
+}
+
+.account-dropdown:hover .dropdown-menu{
+display:block;
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+<div class="brand">
+<img src="{% static 'images/logo.png' %}" class="logo">
+<span class="brand-name">Mr. Snow</span>
+</div>
+
+<nav>
+
+<a href="/">🏠 Home</a>
+<a href="/#about">📖 About</a>
+<a href="/products/">🍦 Products</a>
+<a href="/contact/">📞 Contact</a>
+
+</nav>
+
+<div class="nav-actions">
+
+<input type="text" placeholder="Search..." class="search-box">
+
+<a href="/cart/" class="nav-icon">🛒 Cart</a>
+<a href="/orders/" class="nav-icon">📦 Orders</a>
+
+<!-- ACCOUNT DROPDOWN -->
+<div class="account-dropdown">
+
+<button class="account-btn">
+👤 
+{% if user.is_authenticated %}
+{{ user.username }}
+{% else %}
+Account
+{% endif %}
+</button>
+
+<div class="dropdown-menu">
+<div class="dropdown-menu">
+
+{% if user.is_authenticated %}
+
+{% if user.is_staff %}
+<a href="/dashboard/">⚙ Admin Panel</a>
+{% endif %}
+
+<a href="{% url 'logout' %}">🚪 Logout</a>
+
+{% else %}
+
+<a href="{% url 'login' %}">🔐 Login</a>
+<a href="{% url 'signup' %}">📝 Signup</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+© 2026 Mr. Snow Ice Cream
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Orders</title>
+</head>
+
+<body>
+
+<h2>My Orders</h2>
+
+<table border="1" cellpadding="10">
+
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Total</th>
+</tr>
+
+{% for order in orders %}
+
+<tr>
+<td>{{ order.customer_name }}</td>
+<td>{{ order.phone }}</td>
+<td>{{ order.address }}</td>
+<td>₹{{ order.total_amount }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
